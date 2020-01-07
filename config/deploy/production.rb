@@ -1,0 +1,1 @@
+server "165.227.91.103", user: "root", roles: %w{app db web}

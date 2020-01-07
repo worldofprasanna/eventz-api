@@ -1,0 +1,1 @@
+server "<IP Address>", user: "root", roles: %w{app db web}
