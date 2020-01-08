@@ -1,9 +1,9 @@
 lock "~> 3.11.2"
 
-set :application, "eventz"
-set :repo_url, "git@github.com:worldofprasanna/eventz.git"
+set :application, "eventz_api"
+set :repo_url, "git@github.com:worldofprasanna/eventz-api.git"
 set :deploy_to, -> { "/var/www/#{fetch(:application)}_#{fetch(:stage)}" }
-set :shared_path, "/var/www/eventz_production/shared"
+set :shared_path, "/var/www/#{fetch(:deploy_to)}/shared"
 
 set :assets_roles, []
 
@@ -17,7 +17,7 @@ set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}_puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{release_path}/log/puma.error.log"
