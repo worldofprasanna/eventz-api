@@ -36,6 +36,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public"
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :default_env, {
+  RAILS_ENV: "production"
 }
 
 # Default value for local_user is ENV['USER']
