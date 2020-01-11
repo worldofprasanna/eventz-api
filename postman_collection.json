@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "b56898da-477f-4d64-8b55-8ef8f866d838",
+		"name": "ticketmedium",
+		"description": "Api s to access Ticket Medium app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fetch all conferences",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/conferences",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conferences"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch all the talks for a conference",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/conferences/4/talks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conferences",
+						"4",
+						"talks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch all the speakers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/speakers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"speakers"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
