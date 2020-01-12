@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_11_062709) do
+ActiveRecord::Schema.define(version: 2020_01_12_055428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 2020_01_11_062709) do
     t.string "profile_pic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "speaker_summary"
+    t.datetime "birthday"
+    t.string "country"
+    t.string "city"
+    t.string "about_page"
+    t.string "languages_known", default: [], array: true
+    t.string "mobile_number"
+    t.string "email"
   end
 
   create_table "talks", force: :cascade do |t|

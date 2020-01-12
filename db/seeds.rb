@@ -23,7 +23,7 @@ conferences.each do |conference|
   Conference.create(title: conference[:title], description: conference[:description], location: conference[:location], image_url: conference[:image_url], start_date: conference[:start_date], duration: conference[:duration], price: conference[:price])
 end
 
-prasanna = Speaker.create(name: 'Prasanna', role: 'Architect', linkedin_handle: 'linkedin.com/worldofprasanna', twitter_handle: '@worldofprasanna', github_handle: '@worldofprasanna', company: 'Francium Tech', company_logo: 'some logo', profile_pic: 'some image url')
+prasanna = Speaker.create(name: 'Prasanna', role: 'Architect', linkedin_handle: 'worldofprasanna', twitter_handle: '@worldofprasanna', github_handle: '@worldofprasanna', company: 'Francium Tech', company_logo: 'some logo', profile_pic: 'https://worldofprasanna.in/img/prasanna-1.jpg', speaker_summary: 'Working as a Full Stack Developer & Architect with nearly 10 years of hands-on experience. Recently was more passionate about Devops and in understanding how the high available systems are implemented.', country: 'India', city: 'Chennai', birthday: '10/may/1988', languages_known: ['English', 'Tamil', 'Spanish'], mobile_number: '+91 90000 90000', about_page: 'https://worldofprasanna.in', email: 'prasannacse2005@gmail.com')
 
 Conference.first.talks.create(title: 'Building scalable applications', description: 'Build a scalable appliation leveraging cloud, IAAC, Containers', speaker: prasanna, start_time: Time.now, talk_type: 'Cloud Computing')
 
