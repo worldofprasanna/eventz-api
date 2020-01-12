@@ -18,6 +18,7 @@ require "sprockets/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+require 'activerecord-import/base'
 
 module Api
   class Application < Rails::Application

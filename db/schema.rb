@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_055428) do
+ActiveRecord::Schema.define(version: 2020_01_12_063854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,6 @@ ActiveRecord::Schema.define(version: 2020_01_12_055428) do
     t.string "pic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "pages", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "speakers", force: :cascade do |t|
@@ -66,11 +61,13 @@ ActiveRecord::Schema.define(version: 2020_01_12_055428) do
     t.string "title"
     t.datetime "start_time"
     t.string "description"
-    t.bigint "speaker_id", null: false
-    t.bigint "conference_id", null: false
+    t.bigint "speaker_id"
+    t.bigint "conference_id"
     t.string "talk_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "conference_name"
+    t.string "speaker_name"
     t.index ["conference_id"], name: "index_talks_on_conference_id"
     t.index ["speaker_id"], name: "index_talks_on_speaker_id"
   end

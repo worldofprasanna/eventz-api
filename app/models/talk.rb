@@ -1,8 +1,7 @@
 class Talk < ApplicationRecord
-  belongs_to :speaker
-  belongs_to :conference
+  belongs_to :speaker, optional: true
+  belongs_to :conference, optional: true
 
-  def speaker_name
-    speaker&.name
-  end
+  delegate :name, to: :speaker, prefix: :speaker
+  delegate :profile_pic, to: :speaker, prefix: :speaker
 end
