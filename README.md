@@ -28,6 +28,10 @@ bundle exec rails db:setup
 ```
 bundle exec rails db:migrate
 ```
+5. To populate the dummy data from data/ folder
+```
+bundle exec rails data:populate
+```
 
 ## Usage
 
