@@ -4,4 +4,8 @@ class Conference < ApplicationRecord
   def total_talks
     talks.count
   end
+
+  def speakers
+    talks.map(&:speaker)
+  end
 end

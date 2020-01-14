@@ -1,5 +1,5 @@
 class ConferencesController < ApplicationController
-  before_action :set_conference, only: [:show, :edit, :update, :destroy]
+  before_action :set_conference, only: [:show, :edit, :update, :destroy, :speakers]
 
   # GET /conferences
   # GET /conferences.json
@@ -10,6 +10,11 @@ class ConferencesController < ApplicationController
   # GET /conferences/1
   # GET /conferences/1.json
   def show
+  end
+
+  def speakers
+    @speakers = @conference.speakers
+    render 'speakers/index'
   end
 
   # GET /conferences/new
