@@ -8,5 +8,6 @@ Rails.application.routes.draw do
       end
     end
     resources :speakers
+    get '/promo_codes/:code/apply_discount', to: 'promo_code#apply_discount'
   end
 end
