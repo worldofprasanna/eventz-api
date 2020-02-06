@@ -2,13 +2,33 @@ require 'csv'
 
 namespace :data do
   desc "Populate the initial data from the CSV file"
-  task populate: :environment do
+  task populate_all: :environment do
     import_csv('speakers', Speaker)
     import_csv('conferences', Conference)
     import_csv('talks', Talk)
     import_csv('promo_codes', PromoCode)
     update_conference_for_talks()
     update_speaker_for_talks()
+  end
+
+  def file_name_for_type(type)
+    case type
+    when 'PromoCode'
+      'promo_codes'
+    when 'Speaker'
+      'speakers'
+    when 'Conference'
+      'conferences'
+    when 'Talk'
+      'talks'
+    end
+  end
+
+  task populate: :environment do
+    type = ENV['type']
+    file_name = file_name_for_type(type)
+    puts "Importing the type #{type} using the file #{file_name}"
+    import_csv(file_name, type.constantize)
   end
 
   def import_csv(file_name, klass)
