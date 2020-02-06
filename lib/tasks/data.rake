@@ -6,6 +6,7 @@ namespace :data do
     import_csv('speakers', Speaker)
     import_csv('conferences', Conference)
     import_csv('talks', Talk)
+    import_csv('promo_codes', PromoCode)
     update_conference_for_talks()
     update_speaker_for_talks()
   end
