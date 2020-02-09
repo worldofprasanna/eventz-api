@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "b56898da-477f-4d64-8b55-8ef8f866d838",
+		"name": "ticketmedium",
+		"description": "Api s to access Ticket Medium app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fetch all conferences",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"conference_id\": 1,\n\t\"promocode\": \"AC\",\n\t\"quantity\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ticketmedium.com/api/conferences",
+					"protocol": "https",
+					"host": [
+						"ticketmedium",
+						"com"
+					],
+					"path": [
+						"api",
+						"conferences"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch all the speakers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ticketmedium.com/api/speakers",
+					"protocol": "https",
+					"host": [
+						"ticketmedium",
+						"com"
+					],
+					"path": [
+						"api",
+						"speakers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment checkout session",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"conference_id\": 1,\n\t\"promocode\": \"AC\",\n\t\"quantity\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ticketmedium.com/api/payments/checkout_session",
+					"protocol": "https",
+					"host": [
+						"ticketmedium",
+						"com"
+					],
+					"path": [
+						"api",
+						"payments",
+						"checkout_session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch the conference info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ticketmedium.com/api/conferences/9",
+					"protocol": "https",
+					"host": [
+						"ticketmedium",
+						"com"
+					],
+					"path": [
+						"api",
+						"conferences",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch the talks for a conference",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ticketmedium.com/api/conferences/9/talks",
+					"protocol": "https",
+					"host": [
+						"ticketmedium",
+						"com"
+					],
+					"path": [
+						"api",
+						"conferences",
+						"9",
+						"talks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch the speakers for a conference",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ticketmedium.com/api/conferences/9/speakers",
+					"protocol": "https",
+					"host": [
+						"ticketmedium",
+						"com"
+					],
+					"path": [
+						"api",
+						"conferences",
+						"9",
+						"speakers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apply Discount",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ticketmedium.com/api/promo_codes/NEWYEAR/apply_discount",
+					"protocol": "https",
+					"host": [
+						"ticketmedium",
+						"com"
+					],
+					"path": [
+						"api",
+						"promo_codes",
+						"NEWYEAR",
+						"apply_discount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment confirmation",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"conference_id\": 1,\n\t\"promocode\": \"AC\",\n\t\"quantity\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ticketmedium.com/api/payments/confirm/cs_test_r8i61s15DrmY7s1qm8MMpj29uIh9Z5IWBnasEFMiemM6DDR5Rae0KOcv",
+					"protocol": "https",
+					"host": [
+						"ticketmedium",
+						"com"
+					],
+					"path": [
+						"api",
+						"payments",
+						"confirm",
+						"cs_test_r8i61s15DrmY7s1qm8MMpj29uIh9Z5IWBnasEFMiemM6DDR5Rae0KOcv"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
