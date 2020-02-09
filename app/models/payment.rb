@@ -17,7 +17,7 @@ class Payment < ApplicationRecord
         name: conference.title,
         description: conference.description,
         images: [conference.image_url],
-        amount: final_amount,
+        amount: final_amount * 100,
         currency: 'inr',
         quantity: quantity
       }],

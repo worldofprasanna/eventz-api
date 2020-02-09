@@ -10,10 +10,12 @@ class Conference < ApplicationRecord
   end
 
   def discount_amount(promocode)
-    100
+    result = PromoCode.validate(promocode)
+    discount_percentage = result['discount'] / 100
+    price * discount_percentage
   end
 
   def final_amount(promocode)
-    (price - 100).round
+    (price - discount_amount(promocode)).round
   end
 end
