@@ -9,5 +9,11 @@ Rails.application.routes.draw do
     end
     resources :speakers
     get '/promo_codes/:code/apply_discount', to: 'promo_code#apply_discount'
+    resources :payments do
+      collection do
+        post :checkout_session
+        get 'confirm/:session_id' => 'payments#confirm'
+      end
+    end
   end
 end
