@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       collection do
         post :checkout_session
         get 'confirm/:session_id' => 'payments#confirm'
+        post :confirmation_from_payment_gateway
       end
     end
   end

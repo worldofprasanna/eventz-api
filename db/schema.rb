@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_035928) do
+ActiveRecord::Schema.define(version: 2020_02_10_080348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_035928) do
     t.float "final_amount"
     t.string "promocode"
     t.integer "quantity"
+    t.string "status"
   end
 
   create_table "promo_codes", force: :cascade do |t|
