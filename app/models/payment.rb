@@ -5,8 +5,8 @@ class Payment < ApplicationRecord
 
   def stripe_checkout_session
     Stripe.api_key = STRIPE_API_KEY
-    discounted_amount = conference.discount_amount(promocode)
-    final_amount = conference.final_amount(promocode)
+    discounted_amount = conference.discount_amount(promocode, quantity)
+    final_amount = conference.final_amount(promocode, quantity)
 
     session = Stripe::Checkout::Session.create(
       payment_intent_data: {

@@ -20,6 +20,6 @@ class Conference < ApplicationRecord
   end
 
   def final_amount(promocode, quantity)
-    (actual_price(quantity) - discount_amount(promocode)).round
+    (actual_price(quantity) - discount_amount(promocode, quantity)).round
   end
 end
