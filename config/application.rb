@@ -37,6 +37,8 @@ module Api
         origins Rails.application.credentials[Rails.env.to_sym][:allowed_origins]
         resource '*', headers: :any, methods: [:get, :post, :options, :delete, :patch], credentials: true
       end
-    end if Rails.env.development?
+    end
+    # Even from local we are connecting to ticketmedium to test the app
+    # end if Rails.env.development?
   end
 end
