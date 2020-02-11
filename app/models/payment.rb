@@ -19,7 +19,7 @@ class Payment < ApplicationRecord
         images: [conference.image_url],
         amount: final_amount * 100,
         currency: 'inr',
-        quantity: quantity
+        quantity: 1
       }],
       success_url: 'https://ticketmedium.com/payment_confirmation/success?sessionId={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://ticketmedium.com/payment_confirmation/cancel?sessionId={CHECKOUT_SESSION_ID}',
