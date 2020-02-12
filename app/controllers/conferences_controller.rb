@@ -4,7 +4,7 @@ class ConferencesController < ApplicationController
   # GET /conferences
   # GET /conferences.json
   def index
-    @conferences = Conference.all
+    @conferences = Conference.order(created_at: :desc).page(params[:page])
   end
 
   # GET /conferences/1
