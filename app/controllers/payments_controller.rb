@@ -1,6 +1,9 @@
 class PaymentsController < ApplicationController
+  before_action :authenticate_user!
+
   def checkout_session
     payment = Payment.new(checkout_params)
+    payment.user = current_user
     if payment.save
       render json: payment.stripe_checkout_session
     else

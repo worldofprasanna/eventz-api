@@ -1,5 +1,7 @@
 class Payment < ApplicationRecord
   belongs_to :conference
+  belongs_to :user
+
   STRIPE_API_KEY = Rails.application.credentials.stripe[Rails.env.to_sym][:secret_key]
   PUBLISHABLE_API_KEY = Rails.application.credentials.stripe[Rails.env.to_sym][:publishable_key]
 
@@ -12,6 +14,7 @@ class Payment < ApplicationRecord
       payment_intent_data: {
         setup_future_usage: 'off_session'
       },
+      client_reference_id: user.id,
       payment_method_types: ['card'],
       line_items: [{
         name: conference.title,
