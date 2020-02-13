@@ -1,6 +1,6 @@
 class TalksController < ApplicationController
-  before_action :set_talk, only: [:show, :edit, :update, :destroy]
   before_action :get_conference
+  before_action :set_talk, only: [:show, :edit, :update, :destroy]
 
   # GET /talks
   # GET /talks.json
@@ -27,12 +27,10 @@ class TalksController < ApplicationController
   def create
     @talk = @conference.talks.build(talk_params)
 
-    respond_to do |format|
-      if @talk.save
-        format.json { render :show, status: :created, location: @talk }
-      else
-        format.json { render json: @talk.errors, status: :unprocessable_entity }
-      end
+    if @talk.save
+      render :show, status: :created
+    else
+      format.json { render json: @talk.errors, status: :unprocessable_entity }
     end
   end
 
@@ -69,6 +67,6 @@ class TalksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def talk_params
-      params.require(:talk).permit(:title, :start_time, :description, :speaker_id, :type)
+      params.require(:talk).permit(:title, :start_time, :description, :speaker_id, :talk_type)
     end
 end
