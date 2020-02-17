@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_092335) do
+ActiveRecord::Schema.define(version: 2020_02_17_102518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2020_02_13_092335) do
     t.datetime "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "price"
     t.string "duration"
   end
 
@@ -92,6 +91,15 @@ ActiveRecord::Schema.define(version: 2020_02_13_092335) do
     t.index ["speaker_id"], name: "index_talks_on_speaker_id"
   end
 
+  create_table "ticket_prices", force: :cascade do |t|
+    t.float "price"
+    t.bigint "conference_id", null: false
+    t.string "ticket_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conference_id"], name: "index_ticket_prices_on_conference_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -107,4 +115,5 @@ ActiveRecord::Schema.define(version: 2020_02_13_092335) do
   add_foreign_key "payments", "users"
   add_foreign_key "talks", "conferences"
   add_foreign_key "talks", "speakers"
+  add_foreign_key "ticket_prices", "conferences"
 end
