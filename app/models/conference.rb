@@ -2,6 +2,7 @@ class Conference < ApplicationRecord
   has_many :talks, dependent: :destroy
   has_many :ticket_prices, dependent: :destroy
   accepts_nested_attributes_for :ticket_prices
+  has_and_belongs_to_many :speakers
 
   def total_talks
     talks.count
@@ -16,7 +17,7 @@ class Conference < ApplicationRecord
     end
   end
 
-  def speakers
+  def talk_speakers
     talks.map(&:speaker)
   end
 

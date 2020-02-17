@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :talks
       member do
         get 'speakers' => 'conferences#speakers'
+        post 'add_speaker_to_conference', to: 'speakers#add_speaker_to_conference'
       end
     end
     resources :speakers

@@ -1,5 +1,6 @@
 class SpeakersController < ApplicationController
   before_action :set_speaker, only: [:show, :edit, :update, :destroy]
+  before_action :set_conference, only: [:add_speaker_to_conference]
 
   # GET /speakers
   # GET /speakers.json
@@ -56,10 +57,24 @@ class SpeakersController < ApplicationController
     end
   end
 
+  def add_speaker_to_conference
+    @speaker = Speaker.create(speaker_params)
+    if @speaker.save
+      @speaker.conferences << @conference
+      render :show, status: :ok, location: @speaker
+    else
+      render json: @speaker.errors, status: :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_speaker
       @speaker = Speaker.find(params[:id])
+    end
+
+    def set_conference
+      @conference = Conference.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
