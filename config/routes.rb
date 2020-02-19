@@ -20,6 +20,10 @@ Rails.application.routes.draw do
         post :confirmation_from_payment_gateway
       end
     end
-    resources :users
+    resources :users do
+      collection do
+        post :confirm_by_email
+      end
+    end
   end
 end

@@ -2,8 +2,7 @@
 
 class LoginActiveGuard < Clearance::SignInGuard
   def call
-    # if signed_in? && current_user.active?
-    if signed_in?
+    if signed_in? && current_user.confirmed?
       next_guard
     else
       failure('Your account is not yet activated! Please check your email.')
