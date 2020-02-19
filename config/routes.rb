@@ -20,6 +20,6 @@ Rails.application.routes.draw do
         post :confirmation_from_payment_gateway
       end
     end
-    resources :user, only: [:show]
+    resources :users
   end
 end
