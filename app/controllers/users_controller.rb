@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def confirm_by_email
-    user = User.find_by!(confirmation_token: params[:token])
+    user = User.find_by(confirmation_token: params[:token])
     if user.present?
       user.confirm
       sign_in user

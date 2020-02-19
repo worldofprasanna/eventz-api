@@ -5,14 +5,9 @@ class User < ApplicationRecord
     is_confirm
   end
 
-  def confirm(token)
-    if token == confirmation_token
-      self.is_confirm = true
-      self.confirmed_at = Time.current
-      save
-      true
-    else
-      false
-    end
+  def confirm
+    self.is_confirm = true
+    self.confirmed_at = Time.current
+    save
   end
 end
