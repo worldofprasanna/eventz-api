@@ -32,7 +32,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'httparty'
 gem 'stripe'
 gem 'kaminari'
-gem 'devise'
 gem 'jwt'
 gem 'sendgrid-ruby'
 gem 'dotenv-rails'

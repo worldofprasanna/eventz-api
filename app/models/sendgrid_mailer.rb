@@ -2,18 +2,17 @@ class SendgridMailer
   include SendGrid
 
   TEMPLATE_IDS = {
+    'USER_CONFIRMATION': 'd-474c46a07d4040ea812202f4aaaf7ffd',
     'USER_REGISTRATION': 'd-ad8a5da1b94e4b358aa770019477746f',
     'PAYMENT_CONFIRMATION': 'd-ad8a5da1b94e4b358aa770019477746f'
   }
 
-  def self.send(to, template)
+  def self.send(user, template, data={})
     mail = Mail.new
     mail.from = Email.new(email: 'no-reply@ticketmedium.com')
     personalization = Personalization.new
-    personalization.add_to(Email.new(email: to))
-    personalization.add_dynamic_template_data({
-        "username" => "Prasanna V"
-    })
+    personalization.add_to(Email.new(email: user.email))
+    personalization.add_dynamic_template_data(data)
     mail.add_personalization(personalization)
     mail.template_id = TEMPLATE_IDS[template]
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
