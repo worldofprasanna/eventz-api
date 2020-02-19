@@ -33,6 +33,8 @@ gem 'httparty'
 gem 'stripe'
 gem 'kaminari'
 gem 'jwt'
+gem "clearance"
+gem 'responders'
 gem 'sendgrid-ruby'
 gem 'dotenv-rails'
 

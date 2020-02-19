@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Clearance::Controller
   protect_from_forgery with: :null_session
   respond_to :json
   before_action :authenticate_user

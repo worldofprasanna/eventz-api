@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
   scope :api, defaults: { format: :json } do
-    resources :events
+    post 'sign_in' => 'sessions#create'
+    post 'sign_out' => 'sessions#destroy'
+
     resources :conferences do
       resources :talks
       member do
