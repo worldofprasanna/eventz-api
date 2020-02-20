@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
     resources :users do
       collection do
-        post :confirm_by_email
+        get :confirm_by_email
       end
     end
   end
