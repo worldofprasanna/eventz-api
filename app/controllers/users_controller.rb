@@ -20,7 +20,6 @@ class UsersController < ApplicationController
     user = User.find_by(confirmation_token: params[:token])
     if user.present?
       user.confirm
-      sign_in user
       render json: { 'msg': 'User confirmed successfully' }
     else
       render json: { 'msg': 'Invalid token / Expired token' }, status: 400
