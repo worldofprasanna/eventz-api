@@ -35,6 +35,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def verify_payment
+    order = Order.find_by(razorpay_order_id: params[:razorpay_order_id])
+    status = order.verify_razorpay_order(params[:razorpay_order_id], params[:razorpay_payment_id], params[:razorpay_signature])
+    render json: { msg: 'Processed' }, status: status
+  end
+
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update

@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     post 'sign_in' => 'sessions#create'
     post 'sign_out' => 'sessions#destroy'
 
-    resources :orders
+    resources :orders do
+      collection do
+        post :verify_payment
+      end
+    end
     resources :conferences do
       resources :talks
       member do

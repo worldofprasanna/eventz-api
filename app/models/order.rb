@@ -15,6 +15,28 @@ class Order < ApplicationRecord
       final_amount: final_amount,
       status: 'IN_PROGRESS'
     )
-    { id: order.id, razorpay_key: RAZORPAY_KEY }
+    { id: order.id, razorpay_key: RAZORPAY_KEY, final_amount: final_amount }
+  end
+
+  def verify_razorpay_order(order_id, payment_id, signature)
+    payment_hash = {
+      :razorpay_order_id   => order_id,
+      :razorpay_payment_id => payment_id,
+      :razorpay_signature  => signature
+    }
+    response = Razorpay::Utility.verify_payment_signature(payment_hash)
+    if response
+      result = Razorpay::Payment.fetch(payment_id).capture({ amount: final_amount.to_i * 100 })
+      if result.status == 'captured'
+        update_attributes(status: 'SUCCESSFUL')
+        return 200
+      else
+        update_attributes(status: 'NOT_CAPTURED_PROPERLY')
+        return 500
+      end
+    else
+      update_attributes(status: 'NOT_VALID_SIGNATURE')
+      return 400
+    end
   end
 end
