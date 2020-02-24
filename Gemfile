@@ -37,6 +37,7 @@ gem "clearance"
 gem 'responders'
 gem 'sendgrid-ruby'
 gem 'dotenv-rails'
+gem 'razorpay'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
