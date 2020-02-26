@@ -14,6 +14,7 @@ class PaymentsController < ApplicationController
   def confirm
     session_id = params[:session_id]
     payment = Payment.find_by(session_id: session_id)
+    # SmsService.send_message(current_user, 'Payment received') if current_user.phone_number.present?
     render json: { status: payment.status }
   end
 
