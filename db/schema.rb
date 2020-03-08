@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_075957) do
+ActiveRecord::Schema.define(version: 2020_03_08_141613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_075957) do
     t.decimal "final_amount"
     t.decimal "discounted_amount"
     t.decimal "discounted_percentage"
-    t.decimal "promocode"
+    t.string "promocode"
     t.integer "quantity"
     t.string "status"
     t.bigint "conference_id", null: false
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2020_02_26_075957) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email_id"
+    t.string "full_name"
+    t.string "mobile_number"
     t.index ["conference_id"], name: "index_orders_on_conference_id"
     t.index ["ticket_price_id"], name: "index_orders_on_ticket_price_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -131,7 +134,6 @@ ActiveRecord::Schema.define(version: 2020_02_26_075957) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "confirm", default: false
     t.string "first_name"
     t.string "last_name"
     t.boolean "is_confirm", default: false
