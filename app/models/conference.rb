@@ -12,7 +12,8 @@ class Conference < ApplicationRecord
     ticket_prices.map do |obj|
       {
         'type': obj.ticket_type,
-        'price': obj.price
+        'price': obj.price,
+        'id': obj.id
       }
     end
   end
