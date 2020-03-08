@@ -38,7 +38,13 @@ class OrdersController < ApplicationController
   def verify_payment
     order = Order.find_by(razorpay_order_id: params[:razorpay_order_id])
     status = order.verify_razorpay_order(params[:razorpay_order_id], params[:razorpay_payment_id], params[:razorpay_signature])
+    send_confirmation_information(order) if status == 200
     render json: { msg: 'Processed' }, status: status
+  end
+
+  def send_confirmation_information(order)
+    SendgridMailer.send(order.email_id, :PAYMENT_CONFIRMATION, { 'confirmation_token': order.id })
+    SmsService.send_message(order.mobile_number, "Payment confirmed from TicketMedium. Please note your confirmation id #{order.id}")
   end
 
   # PATCH/PUT /orders/1
