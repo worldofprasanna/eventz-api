@@ -58,7 +58,7 @@ class TalksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def get_conference
-      @conference = Conference.find(params[:conference_id])
+      @conference = Conference.find_by(slug: params[:conference_slug])
     end
 
     def set_talk

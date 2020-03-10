@@ -4,8 +4,28 @@ class Conference < ApplicationRecord
   accepts_nested_attributes_for :ticket_prices
   has_and_belongs_to_many :speakers
 
+  before_create :set_slug
+
   def total_talks
     talks.count
+  end
+
+  def set_slug
+    update_attribute(:slug, to_slug(title)) if slug.blank?
+  end
+
+  def to_slug(string)
+    string.parameterize.truncate(20, omission: '')
+  end
+
+  def to_param
+    slug
+  end
+
+  def self.create_slugs
+    Conference.all.each do |conference|
+      conference.set_slug
+    end
   end
 
   def prices

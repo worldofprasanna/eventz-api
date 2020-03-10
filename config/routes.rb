@@ -9,13 +9,15 @@ Rails.application.routes.draw do
         post :verify_payment
       end
     end
-    resources :conferences do
+
+    resources :conferences, param: :slug do
       resources :talks
       member do
         get 'speakers' => 'conferences#speakers'
         post 'add_speaker_to_conference', to: 'speakers#add_speaker_to_conference'
       end
     end
+
     resources :speakers
     get '/promo_codes/:code/apply_discount', to: 'promo_code#apply_discount'
     resources :payments do

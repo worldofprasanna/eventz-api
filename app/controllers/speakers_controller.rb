@@ -74,7 +74,7 @@ class SpeakersController < ApplicationController
     end
 
     def set_conference
-      @conference = Conference.find(params[:id])
+      @conference = Conference.find_by(slug: params[:slug])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
