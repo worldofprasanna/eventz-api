@@ -61,6 +61,13 @@ namespace :puma do
   before :start, :make_dirs
 end
 
+namespace :sidekiq do
+  task :start do
+    run "cd #{current_path} && bundle exec sidekiq -c 10 -e production -L log/sidekiq.log -d"
+    p capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!
+  end
+end
+
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
@@ -76,7 +83,7 @@ namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
-      before 'deploy:restart', 'puma:start'
+      before 'deploy:restart', 'puma:start', 'sidekiq:start'
       invoke 'deploy'
     end
   end
@@ -85,6 +92,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'puma:restart'
+      invoke 'sidekiq:start'
     end
   end
 

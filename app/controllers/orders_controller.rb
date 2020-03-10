@@ -43,8 +43,8 @@ class OrdersController < ApplicationController
   end
 
   def send_confirmation_information(order)
-    SendgridMailer.send(order.email_id, :PAYMENT_CONFIRMATION, { 'confirmation_token': order.id, 'name': order.full_name })
-    SmsService.send_message(order.mobile_number, "Payment confirmed from TicketMedium. Thanks #{order.full_name}. Please note your confirmation id #{order.id}")
+    SendgridMailerWorker.perform_async(order.email_id, :PAYMENT_CONFIRMATION, { 'confirmation_token': order.id, 'name': order.full_name })
+    SmsServiceWorker.perform_async(order.mobile_number, "Payment confirmed from TicketMedium. Thanks #{order.full_name}. Please note your confirmation id #{order.id}")
   end
 
   # PATCH/PUT /orders/1

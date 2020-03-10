@@ -39,6 +39,7 @@ gem 'sendgrid-ruby'
 gem 'dotenv-rails'
 gem 'razorpay'
 gem 'twilio-ruby'
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
