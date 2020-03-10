@@ -13,7 +13,7 @@ set :user, "root"
 
 # Puma configurations
 
-set :pty,             true
+set :pty,             false
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
@@ -25,6 +25,10 @@ set :puma_error_log,  "#{release_path}/log/puma.access.log"
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
+
+# Sidekiq configurations
+set :init_system, :systemd
+set :sidekiq_config, "config/sidekiq.yml"
 
 # Default value for :linked_files is []
 append :linked_files, "config/database.yml"
@@ -61,13 +65,6 @@ namespace :puma do
   before :start, :make_dirs
 end
 
-namespace :sidekiq do
-  task :start do
-    run "cd #{current_path} && bundle exec sidekiq -c 10 -e production -L log/sidekiq.log -d"
-    p capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!
-  end
-end
-
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
@@ -83,7 +80,7 @@ namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
-      before 'deploy:restart', 'puma:start', 'sidekiq:start'
+      before 'deploy:restart', 'puma:start', 'sidekiq:install'
       invoke 'deploy'
     end
   end
@@ -92,7 +89,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'puma:restart'
-      invoke 'sidekiq:start'
+      invoke 'sidekiq:restart'
     end
   end
 

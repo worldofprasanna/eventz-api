@@ -8,6 +8,8 @@ require 'capistrano/rails'
 require 'capistrano/puma'
 require 'capistrano/postgresql'
 require 'capistrano/ssh_doctor'
+require 'capistrano/sidekiq'
+require 'capistrano/sidekiq/monit'
 
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
