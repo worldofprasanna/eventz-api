@@ -29,6 +29,9 @@ set :puma_init_active_record, true
 # Sidekiq configurations
 set :init_system, :systemd
 set :sidekiq_config, "config/sidekiq.yml"
+set :sidekiq_log, File.join(shared_path, 'log', 'sidekiq.log')
+set :sidekiq_pid, File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')
+set :sidekiq_user, "root"
 
 # Default value for :linked_files is []
 append :linked_files, "config/database.yml"

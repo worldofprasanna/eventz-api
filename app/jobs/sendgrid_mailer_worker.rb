@@ -4,6 +4,6 @@ class SendgridMailerWorker
 
   def perform(email, template, data={})
     result = SendgridMailer.send(email, template.to_sym, data)
-    p result
+    p "status code for sending mail - #{result}"
   end
 end
