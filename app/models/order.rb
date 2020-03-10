@@ -28,7 +28,7 @@ class Order < ApplicationRecord
     if response
       result = Razorpay::Payment.fetch(payment_id).capture({ amount: final_amount.to_i * 100 })
       if result.status == 'captured'
-        update_attributes(status: 'SUCCESSFUL')
+        update_attributes(status: 'SUCCESSFUL', confirmation_token: SecureRandom.uuid)
         return 200
       else
         update_attributes(status: 'NOT_CAPTURED_PROPERLY')
