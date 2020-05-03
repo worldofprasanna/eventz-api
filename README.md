@@ -30,8 +30,15 @@ bundle exec rails db:migrate
 ```
 5. To populate the dummy data from data/ folder
 ```
-bundle exec rails data:populate
+bundle exec rails data:populate_all
+or
+type=PromoCode bundle exec rails data:populate
 ```
+6. After populating the data run the command in rails console,
+```
+Conference.all.each {|c| c.set_slug }
+```
+this will set slug for all the conferences.
 
 ## Usage
 
