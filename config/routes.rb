@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       member do
         get 'speakers' => 'conferences#speakers'
         post 'add_speaker_to_conference', to: 'speakers#add_speaker_to_conference'
+        get 'participants', to: 'conferences#participants'
       end
     end
 

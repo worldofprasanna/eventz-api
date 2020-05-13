@@ -1,6 +1,8 @@
 class Conference < ApplicationRecord
   has_many :talks, dependent: :destroy
   has_many :ticket_prices, dependent: :destroy
+  has_many :orders
+
   accepts_nested_attributes_for :ticket_prices
   has_and_belongs_to_many :speakers
 
@@ -12,6 +14,10 @@ class Conference < ApplicationRecord
 
   def set_slug
     update_attribute(:slug, to_slug(title)) if slug.blank?
+  end
+
+  def participants
+    orders.all.pluck(:full_name)
   end
 
   def to_slug(string)
