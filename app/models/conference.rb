@@ -6,7 +6,7 @@ class Conference < ApplicationRecord
   accepts_nested_attributes_for :ticket_prices
   has_and_belongs_to_many :speakers
 
-  before_create :set_slug
+  # before_create :set_slug
 
   def total_talks
     talks.count
