@@ -1,0 +1,10 @@
+price, ticket_type, conference_id
+500.00,Early Bird,1
+1000.00,All Access Pass,1
+1500.00,VIP Pass,1
+250.00,General Admission,2
+500.00,Workshop Ticket,2
+750.00,Multi-session Pass,2
+750.00,Virtual Pass,3
+1250.00,Group Entry,3
+1500.00,Flash Sale,3
