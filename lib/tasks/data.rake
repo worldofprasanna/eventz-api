@@ -6,6 +6,7 @@ namespace :data do
     import_conf_and_speaker
     import_csv('talks', Talk)
     import_csv('promo_codes', PromoCode)
+    import_csv('ticket_prices', TicketPrice)
     update_conference_for_talks()
     update_speaker_for_talks()
   end
@@ -53,13 +54,11 @@ namespace :data do
   def import_conf_and_speaker
     conferences = csv_data('conferences')
     speakers = csv_data('speakers')
-    ticket_prices = csv_data('ticket_prices')
     current_time = Time.now
 
     conferences.each_with_index do |c, i|
       conf = Conference.create(c)
       conf.speakers << Speaker.create(speakers[i])
-      conf.ticket_prices.create(ticket_prices)
     end
     Conference.create_slugs
     puts "Imported #{conferences.count} records for Conference and Speakers in #{Time.now - current_time} seconds"
