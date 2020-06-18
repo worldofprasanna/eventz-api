@@ -62,7 +62,7 @@ class Conference < ApplicationRecord
     data = {
       'receiver_name': order.full_name,
       'event_name': self.title,
-      'event_time': self.start_date,
+      'event_time': self.start_date.strftime("%d, %b %Y %I:%M%P %Z"),
       'event_link': self.event_link
     }
   end
