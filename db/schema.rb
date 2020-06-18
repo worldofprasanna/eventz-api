@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_074512) do
+ActiveRecord::Schema.define(version: 2020_06_18_085928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_03_10_074512) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "duration"
     t.string "slug"
+    t.string "event_link"
     t.index ["slug"], name: "index_conferences_on_slug", unique: true
   end
 
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_03_10_074512) do
     t.string "full_name"
     t.string "mobile_number"
     t.string "confirmation_token"
+    t.boolean "sent_reminder", default: false
     t.index ["conference_id"], name: "index_orders_on_conference_id"
     t.index ["confirmation_token"], name: "index_orders_on_confirmation_token"
     t.index ["ticket_price_id"], name: "index_orders_on_ticket_price_id"
