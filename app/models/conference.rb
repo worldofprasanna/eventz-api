@@ -51,19 +51,11 @@ class Conference < ApplicationRecord
   def send_reminders
     self.orders.each do |order|
       if order.status == 'SUCCESSFUL' && !order.sent_reminder
-        data = conference_data(order)
+        data = order.conference_data
+        data['event_link'] = self.event_link
         SendgridMailer.send(order.email_id, :EVENT_REMINDER, data)
         order.update(sent_reminder: true)
       end
     end
-  end
-
-  def conference_data(order)
-    data = {
-      'receiver_name': order.full_name,
-      'event_name': self.title,
-      'event_time': self.start_date.strftime("%d, %b %Y %I:%M%P") + " IST",
-      'event_link': self.event_link
-    }
   end
 end

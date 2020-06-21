@@ -39,4 +39,12 @@ class Order < ApplicationRecord
       return 400
     end
   end
+
+  def conference_data
+    data = {
+      'receiver_name': self.full_name,
+      'event_name': self.conference.title,
+      'event_time': self.conference.start_date.strftime("%d, %b %Y %I:%M%P") + " IST"
+    }
+  end
 end
