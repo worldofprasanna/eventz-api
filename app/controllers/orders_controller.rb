@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
 
   def send_confirmation_information(order)
     SendgridMailerWorker.perform_async(order.email_id, :PAYMENT_CONFIRMATION, { 'confirmation_token': order.id, 'name': order.full_name })
-    SmsServiceWorker.perform_async(order.mobile_number, "Payment confirmed from TicketMedium. Thanks #{order.full_name}. Please note your confirmation id #{order.confirmation_token}")
+    SmsServiceWorker.perform_async(order.mobile_number, "Payment confirmed from TicketMedium. Thanks #{order.full_name}. Your confirmation id #{order.confirmation_token} for #{order.conference.title} at #{order.conference.start_date.strftime("%d, %b %Y %I:%M%P")} IST")
   end
 
   # PATCH/PUT /orders/1
