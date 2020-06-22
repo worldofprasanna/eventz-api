@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
 
   def send_confirmation_information(order)
     data = order.conference_data
-    data['confirmation_token'] = order.id
+    data['confirmation_token'] = order.confirmation_token
     SendgridMailerWorker.perform_async(order.email_id, :PAYMENT_CONFIRMATION, data)
     SmsServiceWorker.perform_async(order.mobile_number, "Payment confirmed from TicketMedium. Thanks #{order.full_name}. Your confirmation id #{order.confirmation_token} for #{order.conference.title} at #{order.conference.start_date.strftime("%d, %b %Y %I:%M%P")} IST")
   end
