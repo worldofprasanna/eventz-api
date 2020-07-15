@@ -18,6 +18,15 @@ class Order < ApplicationRecord
     { id: order.id, razorpay_key: RAZORPAY_KEY, final_amount: final_amount }
   end
 
+  def create_free_order
+    update_attributes(
+      final_amount: 0.0,
+      status: 'SUCCESSFUL',
+      confirmation_token: SecureRandom.uuid
+    )
+    { id: self.id, status: self.status, final_amount: self.final_amount }
+  end
+
   def verify_razorpay_order(order_id, payment_id, signature)
     payment_hash = {
       :razorpay_order_id   => order_id,

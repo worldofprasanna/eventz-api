@@ -29,7 +29,11 @@ class OrdersController < ApplicationController
     @order.user = current_user
 
     if @order.save
-      render json: @order.create_razorpay_order
+      if @order.ticket_price.price != 0.0
+        render json: @order.create_razorpay_order
+      else
+        render json: @order.create_free_order
+      end
     else
       render json: @order.errors, status: :unprocessable_entity
     end
@@ -74,6 +78,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:conference_id, :quantity, :promocode, :ticket_price_id, :email_id, :mobile_number, :full_name, :desgination, :company_name, :company_email)
+      params.require(:order).permit(:conference_id, :quantity, :promocode, :ticket_price_id, :email_id, :mobile_number, :full_name, :designation, :company_name, :company_email)
     end
 end
